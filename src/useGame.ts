@@ -30,10 +30,6 @@ const getEmptyCell = (gameField: GameField): Position | null => {
 };
 
 const checkEndGame = (gameField: GameField) => {
-  if (getEmptyCell(gameField) === null) {
-    return EndGameResult.None;
-  }
-
   for (let index = 0; index !== GAME_FIELD_SIZE; index++) {
     const compX = gameField[index][0];
     if (compX && gameField[index].every((x) => x === compX)) {
@@ -62,6 +58,10 @@ const checkEndGame = (gameField: GameField) => {
     )
   ) {
     return EndGameResult.RightDiagonal;
+  }
+
+  if (getEmptyCell(gameField) === null) {
+    return EndGameResult.None;
   }
 
   return EndGameResult.Game;
